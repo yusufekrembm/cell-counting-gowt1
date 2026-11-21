@@ -1,0 +1,9 @@
+method,MAE,RMSE,Bias,ExactAcc,mean_time_s
+Baseline,11.333,11.843,-11.333,0.0,0.0178
+Nihai pipeline,2.4,3.521,1.467,0.2,0.1942
+Baseline [B1],7.0,7.197,-7.0,0.0,
+Nihai pipeline [B1],5.2,5.831,5.2,0.0,
+Baseline [B2],13.8,13.892,-13.8,0.0,
+Nihai pipeline [B2],1.6,1.673,-0.4,0.0,
+Baseline [B3],13.2,13.266,-13.2,0.0,
+Nihai pipeline [B3],0.4,0.632,-0.4,0.6,
