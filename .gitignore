@@ -7,3 +7,5 @@ Fluo-N2DH-GOWT1/
 results/figures_private/
 __pycache__/
 .ipynb_checkpoints/
+# Anaconda/Jupyter yerel dosyaları
+anaconda_projects/

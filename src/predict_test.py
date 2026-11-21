@@ -25,7 +25,8 @@ def main(force=False):
         return pd.read_csv(out_path)
     cfg_path = REPO_DIR / "final_pipeline.json"
     raw = cfg_path.read_bytes()
-    sha = hashlib.sha256(raw).hexdigest()
+    # satır sonları normalize edilir (Windows CRLF / Linux LF aynı özeti verir)
+    sha = hashlib.sha256(raw.replace(b"\r\n", b"\n")).hexdigest()
     conf = json.loads(raw.decode("utf-8"))
     final, base = conf["final_pipeline"], conf["baseline"]
 

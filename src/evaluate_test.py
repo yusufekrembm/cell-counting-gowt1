@@ -18,7 +18,9 @@ from metrics import count_metrics
 
 def main():
     locked = pd.read_csv(REPO_DIR / "test_predictions_locked.csv", dtype={"sequence": str})
-    sha = hashlib.sha256((REPO_DIR / "final_pipeline.json").read_bytes()).hexdigest()
+    raw = (REPO_DIR / "final_pipeline.json").read_bytes()
+    # satır sonları normalize edilir (Windows CRLF / Linux LF aynı özeti verir)
+    sha = hashlib.sha256(raw.replace(b"\r\n", b"\n")).hexdigest()
     if not (locked.final_pipeline_sha256 == sha).all():
         raise RuntimeError("final_pipeline.json kilitli tahminlerden sonra değiştirilmiş!")
 

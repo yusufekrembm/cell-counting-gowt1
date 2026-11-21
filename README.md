@@ -13,8 +13,10 @@ Derin öğrenme veya önceden eğitilmiş model kullanılmamıştır.
 * Sayfa: https://celltrackingchallenge.net/2d-datasets/
 * Eğitim arşivi: https://data.celltrackingchallenge.net/training-datasets/Fluo-N2DH-GOWT1.zip
 
-Veri seti bu repository'de **yoktur** (ödev kuralı 18.5). Arşivi indirip açın; kod, içinde `01`, `02`,
-`01_GT`, `02_GT` bulunan klasörü sırasıyla şu konumlarda arar:
+Veri seti bu repository'de **yoktur** (ödev kuralı 18.5). Ayrıca indirmeye gerek yok:
+`main.ipynb`'nin ilk hücresi (ya da `python src/download_data.py`) veri setini bulamazsa resmi adresten
+indirip `data/` klasörüne açar. Elle indirilmiş bir kopya varsa kod, içinde `01`, `02`, `01_GT`, `02_GT`
+bulunan klasörü sırasıyla şu konumlarda arar:
 
 1. `GOWT1_DIR` ortam değişkeni
 2. `data/Fluo-N2DH-GOWT1/`
@@ -38,7 +40,7 @@ pip install -r requirements.txt
 ```
 
 **Jupyter:** `main.ipynb` dosyasını açıp hücreleri yukarıdan aşağıya çalıştırın.
-**Google Colab:** repo'yu klonlayın, `main.ipynb`'yi açın. İlk hücre veri setini indirip `data/` altına açar.
+**Google Colab:** `!git clone https://github.com/yusufekrembm/cell-counting-gowt1.git`, `%cd cell-counting-gowt1`, `!pip -q install -r requirements.txt` komutlarından sonra `main.ipynb`'yi açın. İlk hücre veri setini kendisi indirir.
 
 **Komut satırı** (`src/` klasöründen):
 
@@ -47,7 +49,7 @@ python run_all.py --stage locked   # 1) seçim, deneyler, doğrulama, KİLİTLİ
 python run_all.py --stage eval     # 2) test değerlendirmesi, zamansal analiz, şekiller
 ```
 
-Tek tek çalıştırma sırası: `select_frames.py` → `experiments.py` → `validate.py` →
+Tek tek çalıştırma sırası: (`download_data.py`) → `select_frames.py` → `references.py` → `experiments.py` → `validate.py` →
 `predict_test.py` → `evaluate_test.py` → `figures.py`.
 
 `predict_test.py`, `test_predictions_locked.csv` zaten varsa üzerine yazmaz. `evaluate_test.py` ise
@@ -75,8 +77,10 @@ Dört aday pipeline arasından en düşük doğrulama MAE değeriyle seçildi (v
 |---|---|
 | `main.ipynb` | Tüm adımları çalıştıran notebook |
 | `src/config.py` | Seed, yol ayarları |
+| `src/download_data.py` | Veri seti yoksa resmi adresten indirme |
 | `src/data_io.py` | Görüntü ve TRA etiketi okuma, referans sayım |
 | `src/select_frames.py` | Seed'e bağlı deterministik kare seçimi |
+| `src/references.py` | Geliştirme/doğrulama referans sayıları (TRA) |
 | `src/pipeline.py` | Konfigürasyonla tanımlanan pipeline ve baseline |
 | `src/experiments.py` | 40 kontrollü deney (E00–E39), parametre taramaları, aday pipeline'lar |
 | `src/validate.py` | Doğrulama karşılaştırması ve nihai seçim |
@@ -84,6 +88,7 @@ Dört aday pipeline arasından en düşük doğrulama MAE değeriyle seçildi (v
 | `src/evaluate_test.py` | Test metrikleri ve zamansal grafik |
 | `src/figures.py` | Rapor şekilleri |
 | `selected_frames.csv` | Seçilen kareler, gruplar, seed |
+| `dev_val_references.csv` | Geliştirme ve doğrulama karelerinin referans hücre sayıları |
 | `experiments.csv` | Deneylerin yöntemleri, parametreleri, kare bazında sayıları ve MAE/RMSE/Bias değerleri |
 | `validation_results.csv` | Aday pipeline doğrulama sonuçları |
 | `final_pipeline.json` | Nihai pipeline + baseline konfigürasyonu |

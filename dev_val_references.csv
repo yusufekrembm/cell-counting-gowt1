@@ -1,0 +1,16 @@
+split,sequence,frame,filename,source,reference_count
+development,01,3,01/t003.tif,01_GT/TRA/man_track003.tif,23
+development,01,7,01/t007.tif,01_GT/TRA/man_track007.tif,23
+development,01,10,01/t010.tif,01_GT/TRA/man_track010.tif,23
+development,01,27,01/t027.tif,01_GT/TRA/man_track027.tif,24
+development,01,31,01/t031.tif,01_GT/TRA/man_track031.tif,24
+development,01,59,01/t059.tif,01_GT/TRA/man_track059.tif,21
+development,01,77,01/t077.tif,01_GT/TRA/man_track077.tif,21
+development,01,85,01/t085.tif,01_GT/TRA/man_track085.tif,21
+development,01,86,01/t086.tif,01_GT/TRA/man_track086.tif,21
+development,01,90,01/t090.tif,01_GT/TRA/man_track090.tif,21
+validation,01,20,01/t020.tif,01_GT/TRA/man_track020.tif,23
+validation,01,21,01/t021.tif,01_GT/TRA/man_track021.tif,24
+validation,01,45,01/t045.tif,01_GT/TRA/man_track045.tif,24
+validation,01,52,01/t052.tif,01_GT/TRA/man_track052.tif,21
+validation,01,67,01/t067.tif,01_GT/TRA/man_track067.tif,21

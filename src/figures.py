@@ -288,6 +288,26 @@ def fig6_examples(final):
     plt.close(fig)
 
 
+def fig_devval_overview(final):
+    """Tüm geliştirme ve doğrulama karelerinin görsel kontrolü (Bölüm 4 ve 10)."""
+    sel = pd.read_csv(REPO_DIR / "selected_frames.csv", dtype={"sequence": str})
+    sel = sel[sel.split != "test"]
+    fig, ax = plt.subplots(3, 5, figsize=(16, 10))
+    for a, (_, r) in zip(ax.ravel(), sel.iterrows()):
+        img = read_image("01", r.frame)
+        gt = read_tra_labels("01", r.frame)
+        n, _, st = run_pipeline(img, final, return_steps=True)
+        ref = len(np.unique(gt)) - 1
+        a.imshow(cv2.resize(overlay(img, st["labels"], gt), (420, 420), interpolation=cv2.INTER_AREA))
+        tag = "Geliştirme" if r.split == "development" else "Doğrulama"
+        a.set_title(f"{tag} 01/t{r.frame:03d}: {n} / ref {ref}", fontsize=9,
+                    color="k" if n == ref else "#c0392b")
+        a.axis("off")
+    fig.tight_layout()
+    fig.savefig(PRIV / "fig_devval_overview.png", dpi=110)
+    plt.close(fig)
+
+
 def main():
     sel = load_split("development")
     final = json.load(open(REPO_DIR / "final_pipeline.json", encoding="utf-8"))["final_pipeline"]
@@ -298,6 +318,7 @@ def main():
     fig_filters()
     fig_params()
     fig4_stages(final)
+    fig_devval_overview(final)
     if (REPO_DIR / "test_results.csv").exists():
         fig6_examples(final)
     print("Şekiller üretildi.")

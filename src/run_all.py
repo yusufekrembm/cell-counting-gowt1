@@ -6,13 +6,14 @@
 """
 import argparse
 
-import select_frames, experiments, validate, predict_test, evaluate_test, figures
+import select_frames, references, experiments, validate, predict_test, evaluate_test, figures
 
 p = argparse.ArgumentParser()
 p.add_argument("--stage", choices=["locked", "eval", "all"], default="all")
 a = p.parse_args()
 if a.stage in ("locked", "all"):
     select_frames.main()
+    references.main()
     experiments.main()
     validate.main()
     predict_test.main()

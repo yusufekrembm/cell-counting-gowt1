@@ -78,7 +78,7 @@ def main(n_repeat=3):
         "baseline": BASELINE,
         "validation_frames": val,
     }
-    with open(REPO_DIR / "final_pipeline.json", "w", encoding="utf-8") as f:
+    with open(REPO_DIR / "final_pipeline.json", "w", encoding="utf-8", newline="\n") as f:
         json.dump(out, f, indent=2, ensure_ascii=False)
     print("Nihai pipeline:", winner)
     return df, final
