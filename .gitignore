@@ -1,0 +1,9 @@
+# Veri seti GitHub'a yüklenmez (ödev Bölüm 18.5)
+data/
+Fluo-N2DH-GOWT1/
+*.zip
+*.tif
+# Veri setine ait görüntü içeren şekiller yalnızca raporda kullanılır
+results/figures_private/
+__pycache__/
+.ipynb_checkpoints/

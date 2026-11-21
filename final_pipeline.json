@@ -1,0 +1,65 @@
+{
+  "seed": 31068,
+  "selected_pipeline": "Pipeline C",
+  "selection_rule": "min val MAE -> min val RMSE -> süre (>%20 fark) -> karmaşıklık",
+  "final_pipeline": {
+    "name": "Pipeline C",
+    "intensity": {
+      "method": "stretch",
+      "p_low": 1,
+      "p_high": 99.8
+    },
+    "filter": {
+      "method": "gaussian",
+      "ksize": 15
+    },
+    "segment": {
+      "method": "fixed",
+      "thresh": 10
+    },
+    "morph": [
+      [
+        "open",
+        5
+      ],
+      [
+        "fill",
+        0
+      ]
+    ],
+    "split": {
+      "method": "watershed",
+      "min_distance": 30,
+      "min_peak": 10,
+      "sigma": 2
+    },
+    "min_area": 400,
+    "clear_border": true,
+    "border_max_area": 2500,
+    "summary": "percentile germe + G15 + göreli eşik T=10 + open5/fill + watershed + kenar"
+  },
+  "baseline": {
+    "name": "Baseline",
+    "intensity": {
+      "method": "none"
+    },
+    "filter": {
+      "method": "none"
+    },
+    "segment": {
+      "method": "otsu"
+    },
+    "morph": [],
+    "split": {
+      "method": "none"
+    },
+    "min_area": 100
+  },
+  "validation_frames": [
+    20,
+    21,
+    45,
+    52,
+    67
+  ]
+}

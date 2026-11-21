@@ -1,0 +1,5 @@
+pipeline,summary,val_MAE,val_RMSE,val_Bias,val_ExactAcc,mean_time_s,complexity,pred_counts,ref_counts,selected
+Pipeline A,G15 + sabit eşik T=4 + open5/fill + kenar temizleme,0.6,1.0,-0.2,0.6,0.0623,6,24 24 22 21 21,23 24 24 21 21,
+Pipeline B,A + distance transform / watershed ayırma,0.4,0.632,0.0,0.6,0.2145,7,24 24 23 21 21,23 24 24 21 21,
+Pipeline C,percentile germe + G15 + göreli eşik T=10 + open5/fill + watershed + kenar,0.2,0.447,-0.2,0.8,0.1842,8,23 24 23 21 21,23 24 24 21 21,SEÇİLDİ
+Pipeline D,histogram eşitleme + G5 + Otsu + open3/fill + watershed + kenar,0.6,1.0,-0.6,0.6,0.1917,8,23 23 22 21 21,23 24 24 21 21,
